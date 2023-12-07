@@ -1,0 +1,101 @@
+The description of programs "radiants.f" and "elements.f"
+---------------------------------------------------------
+
+radiants.f
+==========
+Using the orbital elements, q, e, omega, Omega, and i, this code
+calculates: solar longitude, right ascension and declination of
+geocentric radiant, and geocentric velocity. The calculated quantities
+are compared with their observed counterparts and too large deviations
+are written to an extra output file (see below).
+
+INPUT:
+   (1) data file "inparams.rad" with the parameters characterizing the
+specific requirements. The description of each value that must be
+specified in this file is given in the previous line directly in
+"inparams.rad";
+   (2) data file with the mean geocentric and orbital characteristics
+of individual solutions of showers (its name in the template is
+"allshowers11jan2023.db"; otherwise the name can be specified in
+"inparams.rad"). This file should be prepared before the running of the
+program. The characteristics of one solution should be given in one
+line. There must be 12 columns with 12 parameters. These are:
+
+IAU - the IAU No. of shower {integer}
+sol. - the number of shower solution {integer}
+LS - mean solar longitude [deg] {real}
+R.A. - mean right ascension of geocentric radiant [deg] {real}
+DEC - mean declination of geocentric radiant [deg] {real}
+Vg - mean geocentric velocity [km/s] {real}
+q - mean perihelion distance [au] {real}
+e - mean eccentricity [1] {real}
+omega - mean argument of perihelion [deg] {real}
+Omega - mean longitude of ascending node [deg] {real}
+i - mean inclination [deg] {real}
+n - number of meteors in given solution {integer}
+
+OUTPUT:
+   (1) List of the calculated geocentric quantities of all considered
+showers (all their solutions). Each solution is characterized with the
+IAU No. of shower and the solution number. In the third to sixth columns
+there are given: solar longitude [deg], right ascension and declination
+of geocentric radiant [deg], and geocentric velocity [km/s]. These are
+given in two lines, whereby the observed values (i.e. the values
+published by the original author) are in the first and the calculated
+values in the second line. In the last columns of the second line, there
+is indicated the method of the modification of orbit to cross the orbit
+of the Earth (Q, B, W, A, H, P; the description can be found in
+Neslusan L. et al.: 1998, A&A 331, 411; 1998A&A...331..411N). The name
+of this file in the template is "check_geo.d"; it can be specified in
+the input file "inparams.rad".
+   (2) List of parameters, which were found to be outside of the
+specified tolerance (the specification should be done in
+"inparams.rad"). Each deviation is given in one line; this line contains
+the IAU No. of shower, number of its solution, observed value of the
+erroneous parameter and the corresponding calculated value. The name of
+this file in the template is "errors_geo.inf"; it can be specified in
+"inparams.rad".
+   (3) "debug.rad" - this file is written only when its occurrence is
+required in "inparams.rad". It contains all the calculated parameters,
+by all methods for every solution. Basically, there are three values in
+a given line: observed, calculated for the post-perihelion, and
+calculated for the pre-perihelion arc of the solution's mean orbit.
+Either the calculated value for the post-perihelion or that for the
+pre-perihelion arc should agree with its observed counterpart.
+
+------------------------------------------------------------------------
+
+elements.f
+==========
+Using the solar longitude, equatorial coordinates of geocentric radiant,
+and geocentric velocity, the program calculates the orbital elements,
+q, e, omega, Omega, and i. The calculated quantities are compared with
+their observed counterparts and too large deviations are written to an
+extra output file (see below).
+
+INPUT:
+   (1) data file "inparams.ele" with the parameters characterizing the
+specific requirements. The description of each value that must be
+specified in this file is given in the previous line;
+   (2) data file with the mean geocentric and orbital characteristics of
+individual solutions of showers (its name in the template is
+"allshowers11jan2023.db"; otherwise the name can be specified in
+"inparams.ele"). This file should be prepared before the running of the
+program. It is the same as the input file for the program "radiants.f".
+
+OUTPUT:
+   (1) List of the calculated prbital elements of all considered showers
+(all their solutions). Each solution is characterized with the IAU No.
+of shower and the solution number. In the third to seventh columns there
+are given: perihelion distance [au], eccentricity, arguments of
+perihelion [deg], longitude of ascending node [deg], and inclination
+[deg]. These are given in two lines, whereby the observed values are in
+the first and the calculated values in the second line. The name of this
+file in the template is "check_orb.d"; it can be specified in the input
+file "inparams.ele".
+   (2) List of parameters, which were found to be outside of the
+specified tolerance (in "inparams.ele"). Each deviation is given in one
+line; this line contains the IAU No. of shower, number of its solution,
+observed value of the erroneous parameter and the corresponding
+calculated value. The name of this file in the template is
+"errors_orb.inf"; it can be specified in "inparams.ele".

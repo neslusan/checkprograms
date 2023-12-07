@@ -1,0 +1,16 @@
+Name of input file {string; max. 24 characters}:
+allshowers11jan2023.db
+Name of output file: all calculated quantities {string}:
+check_geo.d
+Name of output file - solutions out of the tolerance {string}:
+errors_geo.inf
+Tolerance in solar longitude [deg] {real}:
+5.0
+Tolerance in right ascension [deg] {real}:
+5.0
+Tolerance in declination [deg] {real}:
+2.5
+Tolerance in geocentric velocity [km/s] {real}:
+1.5
+Writing the debuging file ("debug.d")? - 0=NO, 1=YES {integer}:
+1

@@ -1,0 +1,16 @@
+Name of input file {string; max. 24 characters}:
+allshowers11jan2023.db
+Name of output file: all calculated quantities {string}:
+check_orb.d
+Name of output file - solutions out of the tolerance {string}:
+errors_orb.inf
+Tolerance in perihelion distance [au] {real}:
+0.05
+Tolerance in eccentricity [1] {real}:
+0.05
+Tolerance in argument of perihelion [deg] {real}:
+5.0
+Tolerance in longitude of ascending node [deg] {real}:
+5.0
+Tolerance in inclination [deg] {real}:
+2.5
